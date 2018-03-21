@@ -70,39 +70,25 @@
 
 <br/><br/><br/>
 <div class="container" style="width:500px" >    
-  <div class="row">
-    <div class="col-sm-4">
-      <div class="panel panel-primary" style="width:500px;background-color:#F7F7F7;float: right;">
-        <div class="panel-heading">Result</div>
-        <div class="panel-body" style="width:500px;height:265px;">
-	
-	<div>
-		<c:set var="marks" value="${assessementObj.assessementPercentage}"/>
-		<c:choose>   
-    		<c:when test="${marks > assessementObj.categoryCutOff}">
-        		<h2 align="center">Congratulation...</h2>
-        		<h2 align="center">You have Scored  ${marks}%</h2> 
-        		<br />
-    		</c:when>    
-    		<c:otherwise>       
-        		<h2 align="center">You have Scored ${marks}%</h2>
-        		<h2 align="center">Better Luck Next Time...</h2>  
-        		<br />
-    		</c:otherwise>
-		</c:choose>		
-		<form:form action="/Exit">
-			<input type="submit" value="Exit" name="Exit" style="left: 180px; width: 90px; position: relative;"  class="btn btn-primary">
-		</form:form>	
-	</div>	
-	
-	</div>                
-      </div>
-    </div>
-     <div class="col-sm-4"> 
-      <div class="panel panel-primary" style="width:500px;float: left;">
+  <div class="row">    
+     <div class="col-sm-0"> 
+     <div>
+						<c:set var="marks" value="${assessementObj.assessementPercentage}" />
+						<c:choose>
+							<c:when test="${marks > assessementObj.categoryCutOff}">
+								<h3 align="center">Congratulation! You have Scored ${marks}%</h3>
+								<br/>
+							</c:when>
+							<c:otherwise>
+								<h3 align="center">You have Scored ${marks}%. Better luck next time!!</h3>
+								<br/>			
+							</c:otherwise>
+						</c:choose>
+		</div>
+      <div class="panel panel-primary" style="width:500px;">     	
         <div class="panel-heading">Assessment Summary</div>
-        	<div class="panel-body">        
-        		<form:form method="POST" commandName="assessementObj">					
+        	<div class="panel-body">        			     
+        		<form:form method="POST" commandName="assessementObj"  action="/Exit">					
 					<table class="table">
 						<thead>
 							<tr>
@@ -132,7 +118,8 @@
 								</c:if>
 							</c:forEach>								
 						</tbody>
-						</table>					
+						</table>
+						<input type="submit" value="Exit" name="Exit" style="left: 180px; width: 90px; position: relative;"  class="btn btn-primary">					
 				</form:form>
         </div>        
       </div>

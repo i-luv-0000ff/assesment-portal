@@ -80,8 +80,8 @@ footer {
 	<div class="container" style="width: 500px">
 		<div class="row">
 			<div class="col-sm-4"></div>
-			<div class="col-sm-4">
-				<div class="panel panel-primary" style="width: 500px; float: left;">
+			<div class="col-sm-0">
+				<div class="panel panel-primary" style="width: 500px;">
 					<div class="panel-heading">Assessment Summary</div>
 					<div class="panel-body">
 						<form:form method="POST" commandName="assessementObj" action="finishAssessement">
