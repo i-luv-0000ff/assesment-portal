@@ -14,21 +14,23 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/3.3.1/jquery-ui.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.1/jquery-confirm.min.css">
+<link rel="stylesheet" href="css/questions.css">
+<link rel="stylesheet" href="css/bootstrap-directional-buttons.css">
 <c:url var="home" value="/" scope="request" />
   
 <style type="text/css">
-  /* Remove the navbar's default rounded borders and increase the bottom margin */ 
+  /* Remove the navbar's default rounded borders and increase the bottom margin  
     .navbar {
       margin-bottom: 50px;
       border-radius: 0;      
     }
     
-    /* Remove the jumbotron's default bottom margin */ 
+    /* Remove the jumbotron's default bottom margin 
      .jumbotron {
       margin-bottom: 0;
     }
    
-    /* Add a gray background color and some padding to the footer */
+     Add a gray background color and some padding to the footer 
     footer {
       background-color: #f2f2f2;
       padding: 25px;
@@ -38,7 +40,7 @@
 		position:absolute;
 		left:35px;
 		top:15px;	
-	}
+	}*/
 }
 </style>
 <%
@@ -47,7 +49,7 @@ if( timer == null ) timer = "0";
 %>
 <!-- timer = "01:03:44"; -->
 </head>
-<body style="background-color:#F7F7F7;">
+<body>
 <nav class="navbar navbar-inverse">
 <div class="container-fluid" style="background-color: rgba(51, 122, 183, 1);">
   <div class="navbar-header">
@@ -59,66 +61,68 @@ if( timer == null ) timer = "0";
 </div>
 </nav>
 
-<br/><br/><br/>
-<div class="container" style="width:1200px;">    
-  <div class="row">
-    <div class="col-sm-4">
-      <div class="panel panel-primary" style="width:1250px">
-        <div class="panel-heading">Current Question  ${assessementObj.questionNumber}</div>
-        <div class="panel-body" style="width:1250px;height:280px;background-color: #f2f2f2;">
+  <div >
+    <div class="row">
+      <div class="col-sm-2" style="background-color:lavender;">
+      	<p class="question-num">Question : ${assessementObj.questionNumber}</p>		
+      </div>
+        <div class="col-sm-8">
         
 		<form:form name="assessementForm" commandName="assessementObj" action="assessementQs" id="assessemnetForm" method="POST">					
 				
 				<input type="hidden" name="timer" id="timer">		
 				<input type="hidden" name="time" id="time" value="${assessementObj.courseTime}">				
-				<p style='color: #FCFFFF; float: right;color:white;'>Time remaining: <label id="countdown1" class="countdown1"> </label> 
+				<p style='color: #FCFFFF; float: right; color: black;'>Time remaining: <label id="countdown1" class="countdown1"> </label> 
 				<input type="hidden" name="countdown" class="countdown" id="countdown" readonly>
 				</p>
 				
 				<!-- <label id="countdown" class="countdown"> </label>-->
 				
 				<c:forEach items="${assessementObj.questOption}" var="obj">							
-				<p style="width:1200px;height:10px;"><h3>${obj.key}</h3></p>
+				<p class="question">${obj.key}</p>
 				
 				<c:set var="answerType" value="${assessementObj.answerType}"></c:set>
 				<c:choose>   
     				<c:when test="${answerType eq 'SingleOption'}">        
         				<c:forEach items="${obj.value}" var="element">
-							<form:radiobutton path="userAnswers" name="options"	id="finalQuestion" value='${element}' />
-							   <c:out value="${element}"></c:out>	
-							<br><br>
+							<div class="option radio">
+								<label>
+									<form:radiobutton path="userAnswers" name="options"	id="finalQuestion" value='${element}' />
+						    		<c:out value="${element}"></c:out>
+						    	</label>
+							</div>	
 						</c:forEach>
     				</c:when>    
     				<c:otherwise>       
 						<c:forEach items="${obj.value}" var="element">
-							<form:checkbox path="userAnswers" id="finalQuestion" name="options" value='${element}' />
-							<c:out value="${element}"></c:out>	
-							<br><br>
+							<div class="option checkbox">
+								<label>
+									<form:checkbox path="userAnswers" id="finalQuestion" name="options" value='${element}' />
+									<c:out value="${element}"></c:out>
+								</label>
+							</div>	
 						</c:forEach>	
 					</c:otherwise>
 						
 				</c:choose>	
-				
+				<div class="action-buttons">
 					<c:if test="${assessementObj.questionNumber ne 1}"> 
-						<input type="submit" name="action" value="Previous" class="btn btn-primary"/>
+						<button type="submit" name="action" value="Previous" class="btn btn-primary btn-arrow-left">Previous</button>
 					</c:if>
 								
 					<c:if test="${assessementObj.questionNumber ne assessementObj.totalQuestions }"> 
-						<input type="submit" name="action" value="Next" class="btn btn-primary"/>
+						<button type="submit" name="action" value="Next" class="btn btn-primary btn-arrow-right" style="float:right;">Next</button>
 					</c:if>							
 								
 					<c:if test="${assessementObj.questionNumber eq assessementObj.totalQuestions }"> 
 						<!-- <input type="submit" id="btnFinish" name="action" value="Finish" class="btn btn-primary"/> -->
 						<%-- <a href="#" onclick="javascript:getTotalQuestions('${assessementObj}')" class="btn btn-primary" />Finish</a> --%>					
-							<input type="submit" name="action" value="Finish" class="btn btn-primary"  style="float:right;"/>
-					</c:if>			
+							<button type="submit" name="action" value="Finish" class="btn btn-success btn-arrow-right"  style="float:right;">Finish</button>
+					</c:if>
+				</div>			
 				</c:forEach>		
 		</form:form>
-	</div>      
-	 
-        
     </div>
-    </div>   
   </div>
 </div>
  		
