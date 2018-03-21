@@ -60,45 +60,44 @@ public class AssessementController
 		if("Next".equals(action)) {
 			
 			int questionNumber = assessementObj.getQuestionNumber();
-			
+
 			HashMap<Integer, String[]> userSelectedAnswersMap = assessementObj.getUserSelectedAnswersMap();
-			
+
 			userSelectedAnswersMap.put(questionNumber, assessementObj.getUserAnswers());
-			assessementObj.setUserAnsMap(userSelectedAnswersMap);			
-			
-			assessementObj.setQuestionNumber(questionNumber + 1);			
-			assessementObj.setUserAnswers(assessementObj.getUserAnsMap().get(questionNumber + 1));		
-			
-			assessementObj = getTypeOfOptions(assessementObj, assessementObj.getQuestionNumber());	
-			
-			Map<String, List<String>> questAns = new HashMap<String, List<String>>();
-			questAns.put(assessementObj.getQsMap().get(assessementObj.getQuestionNumber()),
-						 assessementObj.getAsMap().get(assessementObj.getQuestionNumber()));
-			assessementObj.setQuestOption(questAns);
-			
-			
-			return new ModelAndView("assessement","assessementObj",assessementObj);
-			
-		}
-		else if("Previous".equals(action)) {
-			
-			int questionNo = assessementObj.getQuestionNumber();
-			
-			HashMap<Integer, String[]> userSelectedAnswersMap = assessementObj.getUserSelectedAnswersMap();
-			userSelectedAnswersMap.put(questionNo, assessementObj.getUserAnswers());			
-			assessementObj.setUserAnsMap(userSelectedAnswersMap);	
-			
-			assessementObj.setQuestionNumber(questionNo - 1);
-			assessementObj.setUserAnswers(assessementObj.getUserAnsMap().get(questionNo - 1));			
-			
-			assessementObj = getTypeOfOptions(assessementObj, assessementObj.getQuestionNumber());			
-			
+			assessementObj.setUserAnsMap(userSelectedAnswersMap);
+
+			assessementObj.setQuestionNumber(questionNumber + 1);
+			assessementObj.setUserAnswers(assessementObj.getUserAnsMap().get(questionNumber + 1));
+
+			assessementObj = getTypeOfOptions(assessementObj, assessementObj.getQuestionNumber());
+
 			Map<String, List<String>> questAns = new HashMap<String, List<String>>();
 			questAns.put(assessementObj.getQsMap().get(assessementObj.getQuestionNumber()),
 					assessementObj.getAsMap().get(assessementObj.getQuestionNumber()));
-			assessementObj.setQuestOption(questAns);			
+			assessementObj.setQuestOption(questAns);
+
+			return new ModelAndView("assessement", "assessementObj", assessementObj);
 			
-			return new ModelAndView("assessement","assessementObj",assessementObj);
+		}
+		else if("Previous".equals(action)) {
+
+			int questionNo = assessementObj.getQuestionNumber();
+
+			HashMap<Integer, String[]> userSelectedAnswersMap = assessementObj.getUserSelectedAnswersMap();
+			userSelectedAnswersMap.put(questionNo, assessementObj.getUserAnswers());
+			assessementObj.setUserAnsMap(userSelectedAnswersMap);
+
+			assessementObj.setQuestionNumber(questionNo - 1);
+			assessementObj.setUserAnswers(assessementObj.getUserAnsMap().get(questionNo - 1));
+
+			assessementObj = getTypeOfOptions(assessementObj, assessementObj.getQuestionNumber());
+
+			Map<String, List<String>> questAns = new HashMap<String, List<String>>();
+			questAns.put(assessementObj.getQsMap().get(assessementObj.getQuestionNumber()),
+					assessementObj.getAsMap().get(assessementObj.getQuestionNumber()));
+			assessementObj.setQuestOption(questAns);
+
+			return new ModelAndView("assessement", "assessementObj", assessementObj);
 		}	
 		else if("Finish".equals(action)) {
 			
@@ -106,7 +105,7 @@ public class AssessementController
 			String countdownTime = request.getParameter("countdown");
 			assessementObj.setCourseTime(countdownTime);			
 			System.out.println("countdownTime Parameter ::: "+countdownTime);
-			*/
+			*/ 
 			
             int questionNumber = assessementObj.getQuestionNumber();
 			HashMap<Integer, String[]> userSelectedAnswersMap = assessementObj.getUserSelectedAnswersMap();
@@ -167,40 +166,44 @@ public class AssessementController
 		return assessementObj;
 	}
 	
+	/**
+	 * Display questions summary in the Confirmation page
+	 * 
+	 * If Timer times out it goes to result page directly.
+	 * 
+	 */
 	@RequestMapping(value = "/finishAssessement", method = RequestMethod.POST)
 	public ModelAndView finishAssessement(@ModelAttribute("assessementObj") AssessementBean assessementObj,@ModelAttribute("action") String action, HttpServletRequest request) {
 		
-		if("Submit".equals(action)) 
-		{
-			
+		if ("Go Back".equals(action)) {
+
+			/*
+			 * String countdownTime = request.getParameter("countdown");
+			 * assessementObj.setCourseTime(countdownTime);
+			 * System.out.println("countdownTime Parameter1 ::: "+countdownTime);
+			 */
 			int questionNo = assessementObj.getQuestionNumber();
 			HashMap<Integer, String[]> userSelectedAnswersMap = assessementObj.getUserSelectedAnswersMap();
 			userSelectedAnswersMap.put(questionNo, assessementObj.getUserAnswers());
-			assessementObj.setUserAnsMap(userSelectedAnswersMap);			
-			assessementObj = calculateResults(assessementService, assessementObj);	
-		}
-		else if("Go Back".equals(action)){			
-			
-		/*	
-			String countdownTime = request.getParameter("countdown");
-			assessementObj.setCourseTime(countdownTime);			
-			System.out.println("countdownTime Parameter1 ::: "+countdownTime);
-			*/
-            int questionNo = assessementObj.getQuestionNumber();
-			HashMap<Integer, String[]> userSelectedAnswersMap = assessementObj.getUserSelectedAnswersMap();
-			userSelectedAnswersMap.put(questionNo, assessementObj.getUserAnswers());	
-			
-			assessementObj.setUserAnsMap(userSelectedAnswersMap);	
+			assessementObj.setUserAnsMap(userSelectedAnswersMap);
 			assessementObj.setQuestionNumber(questionNo);
-			assessementObj.setUserAnswers(assessementObj.getUserAnsMap().get(questionNo));			
-			assessementObj = getTypeOfOptions(assessementObj, assessementObj.getQuestionNumber());			
+			assessementObj.setUserAnswers(assessementObj.getUserAnsMap().get(questionNo));
+			assessementObj = getTypeOfOptions(assessementObj, assessementObj.getQuestionNumber());
 			Map<String, List<String>> questAns = new HashMap<String, List<String>>();
 			questAns.put(assessementObj.getQsMap().get(assessementObj.getQuestionNumber()),
 					assessementObj.getAsMap().get(assessementObj.getQuestionNumber()));
-			assessementObj.setQuestOption(questAns);			
-			return new ModelAndView("assessement","assessementObj",assessementObj);
+			assessementObj.setQuestOption(questAns);
+			return new ModelAndView("assessement", "assessementObj", assessementObj);
+			
+		} else {
+			int questionNo = assessementObj.getQuestionNumber();
+			HashMap<Integer, String[]> userSelectedAnswersMap = assessementObj.getUserSelectedAnswersMap();
+			userSelectedAnswersMap.put(questionNo, assessementObj.getUserAnswers());
+			assessementObj.setUserAnsMap(userSelectedAnswersMap);
+			assessementObj = calculateResults(assessementService, assessementObj);
+			return new ModelAndView("result", "assessementObj", assessementObj);
 		}
-		return new ModelAndView("result","assessementObj",assessementObj);
+		
 	}
 
 
@@ -211,22 +214,21 @@ public class AssessementController
 	 * @return 
 	 */
 	private Map<Integer, String> getCorrectAnswerWIthId(Map<Integer, Integer> orderResult, HashMap<Integer, String[]> userAnsMap) {
-		
-		Map<Integer,String> userSelectedOrderMap = new HashMap<Integer,String>();
-		for (Map.Entry<Integer, Integer> orderMap :orderResult.entrySet())
-		{
-			for(Map.Entry<Integer, String[]> userSelected : userAnsMap.entrySet()) {
-				
-				if(orderMap.getKey().intValue() ==  userSelected.getKey().intValue()) {					
-					String strVal ="";
-					if(userSelected.getValue()!=null) {
-						if(userSelected.getValue().toString().length()!=0)
-						   strVal = convertArrayToString(userSelected.getValue(), ",");
-					}									
-					
+
+		Map<Integer, String> userSelectedOrderMap = new HashMap<Integer, String>();
+		for (Map.Entry<Integer, Integer> orderMap : orderResult.entrySet()) {
+			for (Map.Entry<Integer, String[]> userSelected : userAnsMap.entrySet()) {
+
+				if (orderMap.getKey().intValue() == userSelected.getKey().intValue()) {
+					String strVal = "";
+					if (userSelected.getValue() != null) {
+						if (userSelected.getValue().toString().length() != 0)
+							strVal = convertArrayToString(userSelected.getValue(), ",");
+					}
+
 					userSelectedOrderMap.put(orderMap.getValue().intValue(), strVal);
 				}
-				
+
 			}
 		}
 		return userSelectedOrderMap;
@@ -239,39 +241,35 @@ public class AssessementController
 	 * @return
 	 */
 	private AssessementBean initializeQuestions(AssessementBean assessementObj) {		
-		
-	
-		int startquestionNumber = 1;	
-		
-		
-		int numberOfAttempts = assessementService.getAttempts(assessementObj)+1;		
-		
-		System.out.println("Number of Attempts trying ::: "+numberOfAttempts);
-		
-		
-		// TODO Auto-generated method stub
-		LinkedHashMap<Integer, String> questionList = assessementService.initializeQuestions(assessementObj, numberOfAttempts);		
-		
-		assessementObj.setQuestionList(questionList);		
-		
-		if(questionList.size()!=0) {			
 
-			LinkedHashMap<Integer, List<String>> answerList = assessementService.getAnswer(assessementObj);		
-			LinkedHashMap<Integer, Integer> ansTypeList = assessementService.getTypeOfAnswer(assessementObj);		
-			LinkedHashMap<String, List<String>> questAns = new LinkedHashMap<String, List<String>>();		
-			
+		int startquestionNumber = 1;
+		int numberOfAttempts = assessementService.getAttempts(assessementObj) + 1;
+		System.out.println("Number of Attempts trying ::: " + numberOfAttempts);
+		// TODO Auto-generated method stub
+		LinkedHashMap<Integer, String> questionList = assessementService.initializeQuestions(assessementObj,
+				numberOfAttempts);
+
+		assessementObj.setQuestionList(questionList);
+
+		if (questionList.size() != 0) {
+
+			LinkedHashMap<Integer, List<String>> answerList = assessementService.getAnswer(assessementObj);
+			LinkedHashMap<Integer, Integer> ansTypeList = assessementService.getTypeOfAnswer(assessementObj);
+			LinkedHashMap<String, List<String>> questAns = new LinkedHashMap<String, List<String>>();
+
 			assessementObj = orderQuestion(assessementObj, questionList, answerList, ansTypeList);
 			assessementObj.setNumberOfAttempts(numberOfAttempts);
 			assessementObj.setQuestionNumber(startquestionNumber);
 			assessementObj = getTypeOfOptions(assessementObj, startquestionNumber);
-			questAns.put(assessementObj.getQsMap().get(startquestionNumber),assessementObj.getAsMap().get(startquestionNumber));		
+			questAns.put(assessementObj.getQsMap().get(startquestionNumber),
+					assessementObj.getAsMap().get(startquestionNumber));
 			assessementObj.setQuestOption(questAns);
-			
+
 			String courseTime = assessementService.getAssessmentTime(assessementObj);
 
 			assessementObj.setCourseTime(courseTime);
-		}		
-		
+		}
+
 		return assessementObj;
 	}
 	
@@ -285,31 +283,29 @@ public class AssessementController
 	 */
 	private AssessementBean orderQuestion(AssessementBean assessementObj, LinkedHashMap<Integer, String> questionList,
 			LinkedHashMap<Integer, List<String>> answerList, LinkedHashMap<Integer, Integer> ansTypeList) {
-	
+
 		int qsCount = 1;
 		LinkedHashMap<Integer, String> orderedQuestionList = new LinkedHashMap<Integer, String>();
 		HashMap<Integer, Integer> orderedResult = new HashMap<Integer, Integer>();
-		
-		for (Map.Entry<Integer, String> orderedQs : questionList.entrySet())
-		{
-			orderedQuestionList.put(qsCount, orderedQs.getValue());			
-			orderedResult.put(qsCount, (Integer)orderedQs.getKey());
-			assessementObj.setOrderResult(orderedResult);			
+
+		for (Map.Entry<Integer, String> orderedQs : questionList.entrySet()) {
+			orderedQuestionList.put(qsCount, orderedQs.getValue());
+			orderedResult.put(qsCount, (Integer) orderedQs.getKey());
+			assessementObj.setOrderResult(orderedResult);
 			qsCount++;
 		}
-		
+
 		int asCount = 1;
 		LinkedHashMap<Integer, List<String>> orderedAnswerList = new LinkedHashMap<Integer, List<String>>();
-		for (Map.Entry<Integer, List<String>> orderedAs : answerList.entrySet())
-		{		
-			orderedAnswerList.put(asCount, orderedAs.getValue());		
+		for (Map.Entry<Integer, List<String>> orderedAs : answerList.entrySet()) {
+			orderedAnswerList.put(asCount, orderedAs.getValue());
 			asCount++;
 		}
-		
-		assessementObj.setAsMap(orderedAnswerList);		
-		assessementObj.setQsMap(orderedQuestionList);		
-		assessementObj.setTypeOfAnsMap(ansTypeList);		
-		
+
+		assessementObj.setAsMap(orderedAnswerList);
+		assessementObj.setQsMap(orderedQuestionList);
+		assessementObj.setTypeOfAnsMap(ansTypeList);
+
 		return assessementObj;
 	}
 
@@ -350,58 +346,53 @@ public class AssessementController
 		
 		double totalCorrect = 0.0;
 		int assessementPercentage = 0;
-		Map<Integer,String> userSelectedOrderMap = null;
-		
-		LinkedHashMap<Integer,String> correctAnsMap=assessementService.getCorrectOption(assessementObj);
+		Map<Integer, String> userSelectedOrderMap = null;
+
+		LinkedHashMap<Integer, String> correctAnsMap = assessementService.getCorrectOption(assessementObj);
 		assessementObj.setCorrectAnswerMap(correctAnsMap);
 
-		userSelectedOrderMap = getCorrectAnswerWIthId(assessementObj.getOrderResult(), assessementObj.getUserAnsMap());		
-		
-		int countQs =0, totalQsCount=0, selectedQsCount=0;		
-		Map<Integer, String> summaryMap = new HashMap<Integer, String>();		
-		for (Map.Entry<Integer, String> correctResult : assessementObj.getCorrectAnswerMap().entrySet())
-		{			
-			for (Map.Entry<Integer, String> userSelected : userSelectedOrderMap.entrySet())
-			{				
-				if(correctResult.getKey() == userSelected.getKey()) {
-					countQs++;					
-					if(userSelected.getValue() != null ) {
-						if(correctResult.getValue().equals(userSelected.getValue())) {
-							totalCorrect++;			
+		userSelectedOrderMap = getCorrectAnswerWIthId(assessementObj.getOrderResult(), assessementObj.getUserAnsMap());
+
+		int countQs = 0, totalQsCount = 0, selectedQsCount = 0;
+		Map<Integer, String> summaryMap = new HashMap<Integer, String>();
+		for (Map.Entry<Integer, String> correctResult : assessementObj.getCorrectAnswerMap().entrySet()) {
+			for (Map.Entry<Integer, String> userSelected : userSelectedOrderMap.entrySet()) {
+				if (correctResult.getKey() == userSelected.getKey()) {
+					countQs++;
+					if (userSelected.getValue() != null) {
+						if (correctResult.getValue().equals(userSelected.getValue())) {
+							totalCorrect++;
 							summaryMap.put(countQs, "Correct");
-						}
-						else if(userSelected.getValue().toString().length()==0) {
-							summaryMap.put(countQs, "Unanswered");							
-						}
-						else
-							summaryMap.put(countQs, "Wrong");						
-					}
-					else 
-					  summaryMap.put(countQs, "Unanswered");				
+						} else if (userSelected.getValue().toString().length() == 0) {
+							summaryMap.put(countQs, "Unanswered");
+						} else
+							summaryMap.put(countQs, "Wrong");
+					} else
+						summaryMap.put(countQs, "Unanswered");
 				}
 			}
 		}
-		
+
 		totalQsCount = assessementObj.getTotalQuestions();
 		selectedQsCount = summaryMap.size();
-		
-		//Summary Page Unanswered question display, If Timer exceeds time.		
-		if(totalQsCount != selectedQsCount) { 
-			while(selectedQsCount< totalQsCount) {
+
+		// Summary Page Unanswered question display, If Timer exceeds time.
+		if (totalQsCount != selectedQsCount) {
+			while (selectedQsCount < totalQsCount) {
 				selectedQsCount++;
-				summaryMap.put(selectedQsCount, "Unanswered");							
+				summaryMap.put(selectedQsCount, "Unanswered");
 			}
 		}
-		assessementObj.setResultPageMap(summaryMap);				
-		
+		assessementObj.setResultPageMap(summaryMap);
+
 		assessementPercentage = (int) ((totalCorrect / assessementObj.getTotalQuestions()) * 100);
-		
+
 		assessementObj.setAssessementPercentage(Math.round(assessementPercentage));
 		System.out.println(assessementObj.getAssessementPercentage());
-		String result= "Pass";
-		if(assessementPercentage < assessementObj.getCategoryCutOff())
-			result="Fail";
-		
+		String result = "Pass";
+		if (assessementPercentage < assessementObj.getCategoryCutOff())
+			result = "Fail";
+
 		UserActivity userActivity = new UserActivity();
 		userActivity.setResult(result);
 		userActivity.setScore(assessementPercentage);
@@ -410,8 +401,8 @@ public class AssessementController
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		userActivity.setAttentedDate(dateFormat.format(date));
-		assessementService.insertResult(userActivity);		
-		
+		assessementService.insertResult(userActivity);
+
 		return assessementObj;
 	}
 
