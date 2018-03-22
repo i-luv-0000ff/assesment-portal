@@ -152,7 +152,7 @@ form {
 
 <script type="text/javascript">
 	$('[data-toggle="popover"]').click(function() {
-		$("#username").popover('destroy');
+		$("#name").popover('destroy');
 		$("#password").popover('destroy');
 	});
 </script>
