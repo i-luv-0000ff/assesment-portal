@@ -181,7 +181,7 @@ public class LoginController {
 				
 		model.addAttribute("pwdchanged", "Password Changed Successfully!");
 		
-		modelAndView.setViewName("changepassword");
+		modelAndView.setViewName("login");
 		return modelAndView;
 	}	
 

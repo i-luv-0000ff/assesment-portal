@@ -44,6 +44,11 @@ h2 {
 p {
 	margin: 0 0 0px;
 }
+
+.btn {
+    display: inline-block;
+    padding: 6px 20px;
+    }
 </style>
 <body>
 	<div class="container-fluid text-center"
@@ -65,7 +70,7 @@ p {
 				<fieldset>
 
 					<div class="form-group">
-						<br> <label class="control-label col-md-2" for="password">New Password</label>
+						<br> <label class="control-label col-md-2" for="password">New Password :</label>
 						<div class="col-md-10" style="padding: 0px 16px 0px 0px;">
 						<form:input id="password" path="password" type="password"
 							class="form-control" name="password" required="required" />
@@ -78,20 +83,20 @@ p {
 					<div id="errorMsg" class="error"></div>
 
 					<div class="form-group">
-						<label class="control-label col-md-2" for="password">Confirm Password </label>
+						<label class="control-label col-md-2" for="password">Confirm Password :</label>
 						<div class="col-md-10" style="padding: 0px 16px 0px 0px;">
 						<form:input id="confirmpassword" type="password"
 							class="form-control" onchange='validate();'
 							path="confirmpassword" name="confirmpassword" required="required" />
 							</div>
 					</div>
-					<span id='message'> </span>
+					<p id='message' align="right"> </p>
 
 					<form:errors path="securityAns" />
 					<br>
 					
 					<div class="row">
-						<div class="col-sm-offset-6 col-xs-6 col-sm-6 col-md-6"
+						<div class="col-sm-offset-8 col-xs-6 col-sm-6 col-md-6"
 							style="align: right;">
 							<button id="submit" type="submit" name="confirm"
 								class="btn btn-primary" value="Submit">Submit</button>
@@ -105,11 +110,7 @@ p {
 					<br>
 
 					
-					<c:if test="${not empty pwdchanged}">
-						<p align="center" style="color: blue;">
-                           <p style="color: green; font-style: italic; font-weight: bold;">${pwdchanged}  Please <a href="/login">click here</a> to login.
-						</p>
-					</c:if>
+					
 				</fieldset>
 			</form:form>
 
@@ -125,15 +126,15 @@ p {
 	function validate() {
 		
 		if(document.getElementById('password').value == document.getElementById('confirmpassword').value){
-			//document.getElementById('errorMsg').innerHTML = "Passwords matching";
+			document.getElementById('message').innerHTML = "Passwords matching!";
 			document.getElementById('message').style.color = 'green';
-			document.getElementById('message').innerHTML = 'matching';
+			//document.getElementById('message').innerHTML = 'matching';
 			document.getElementById('submit').disabled = false;
 			return true;
 		} else {
 			//document.getElementById('errorMsg').innerHTML = "Passwords not match";
 			document.getElementById('message').style.color = 'red';
-			document.getElementById('message').innerHTML = 'not matching';
+			document.getElementById('message').innerHTML = 'Passwords not matching!';
 			document.getElementById('submit').disabled = true;
 			return false;
 		}

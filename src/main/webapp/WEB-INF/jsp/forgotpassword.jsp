@@ -44,6 +44,11 @@ h2 {
 p {
 	margin: 0 0 0px;
 }
+
+.btn {
+	display: inline-block;
+	padding: 6px 19px;
+}
 </style>
 <body>
 	<div class="container-fluid text-center"
@@ -77,36 +82,45 @@ p {
 						<div id="errorMsg" class="error"></div>
 
 						<div class="form-group">
-							<label class="control-label col-md-2" for="userSecurtiyQuest">Security Question </label> 
+							<label class="control-label col-md-2" for="userSecurtiyQuest">Security
+								Question </label>
 							<div class="col-md-10" style="padding: 0px 16px 0px 0px;">
-								<input name="userSecurtiyQuest" type="text"
-								class="form-control" name="securityAns"
-								placeholder="Your Security Question"
-								value='<c:out value="${userForm.userSecurtiyQuest}"></c:out>'
-								disabled="true">
-							<p style="color: Crimson; font-style: italic; font-weight: bold;">${invalidQuest}</p>
+								<input name="userSecurtiyQuest" type="text" class="form-control"
+									name="securityAns" placeholder="Your Security Question"
+									value='<c:out value="${userForm.userSecurtiyQuest}"></c:out>'
+									disabled="true">
+								<p
+									style="color: Crimson; font-style: italic; font-weight: bold;">${invalidQuest}</p>
 							</div>
 						</div>
 
 
 						<div class="form-group">
-							<label  class="control-label col-md-2"  for="securityAns">Security Answer </label>
+							<label class="control-label col-md-2" for="securityAns">Security
+								Answer </label>
 							<div class="col-md-10" style="padding: 0px 16px 0px 0px;">
-							<form:input id="securityAns" type="text" class="form-control"
-								path="securityAns" name="securityAns"
-								placeholder="Your Security Answer" onchange="invalidAns();" />
-								</div>
+								<form:input id="securityAns" type="text" class="form-control"
+									path="securityAns" name="securityAns"
+									placeholder="Your Security Answer" onchange="invalidAns();" />
+
+								<form:errors path="securityAns" />
+							</div>
 						</div>
 
-						 <p id="invalid" style="color: red; font-style: italic; font-weight: bold; display:none;">${invalidAns}</p>
- 
-<%-- 						<p id="secAns"
-							style="color: red; font-style: italic; font-weight: bold;">${secAns}</p>
- --%>
-						<form:errors path="securityAns" />
+						<div align="right">
+
+							<c:if test="${userForm.validAndFlg == true}">
+								<p style="color: red;">Invalid Details. Please fill out the
+									required details correctly.</p>
+							</c:if>
+
+							<c:if test="${not empty invalidAns}">
+								<p align="right" style="color: red;"></p>
+							</c:if>
+						</div>
 						<br>
 						<div class="row">
-							<div class="col-sm-offset-6 col-xs-6 col-sm-6 col-md-6"
+							<div class="col-sm-offset-8 col-xs-6 col-sm-6 col-md-6"
 								style="align: right;">
 								<button id="confirm" type="submit" name="confirm"
 									class="btn btn-primary" value="Submit">Submit</button>
@@ -117,21 +131,14 @@ p {
 
 							</div>
 						</div>
-
+						<p id="invalid"
+							style="align: right; color: red; font-style: italic; font-weight: bold; display: none;">${invalidAns}</p>
 					</fieldset>
 				</form:form>
 			</div>
 		</div>
 	</div>
 
-	<c:if test="${userForm.validAndFlg == true}">
-		<p align="center" style="color: blue;">Invalid Details. Please fill out the	required details correctly.</p>
-	</c:if>
-
-	<c:if test="${not empty invalidAns}">
-		<p align="center" style="color: blue;"></p>
-	</c:if>
-	</div>
 
 
 </body>
@@ -161,7 +168,8 @@ p {
 
 	function invalidAns() {
 
-		if (document.getElementById("securityAns").value != document.getElementById("secAns").value) {
+		if (document.getElementById("securityAns").value != document
+				.getElementById("secAns").value) {
 			document.getElementById("invalid").style.display = 'block';
 		} else {
 			document.getElementById("invalid").style.display = 'none';

@@ -46,6 +46,10 @@ p {
     margin: 0 0 0px;
 }
 
+.btn {
+    display: inline-block;
+    padding: 6px 19px;
+    }
 </style>
 <body>
 <div class="container-fluid text-center" style="background-color: rgba(51, 122, 183, 1);">
@@ -117,12 +121,13 @@ p {
  	 	
 					<div class="row" style="padding: 0px 0px 18px 0px;">
 						<div class="col-xs-12 col-sm-12 col-md-12">
-							<div class="col-sm-offset-6 col-xs-6 col-sm-6 col-md-6" style="align:right;">
+							<div class="col-sm-offset-7 col-xs-6 col-sm-6 col-md-6" style="align:right;">
 	    	    				<button id="resetvalue" type="reset" class="btn btn-primary btn-md" onclick="myReset()">Reset-Fields</button>
     	    					<button id="register" type="submit" class="btn btn-primary" onclick="javascript:checkAvailability()">Register Me</button>
       						</div>		
     					</div>
-    				</div>				
+    				</div>	
+    						
 				</fieldset>
 			</form:form>
 		</div>

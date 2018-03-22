@@ -70,6 +70,7 @@ public ModelAndView registerUser(@Valid @ModelAttribute("userForm") User user,Bi
 		user.setSecurityAns(user.getSecurityAns());
 		modelAndView.addObject("userForm", user);
 		registrationService.insertUserDetails(user);
+		model.addAttribute("successMsg", "Registration Successful!");
 		modelAndView.setViewName(viewName);
 	}
 	return modelAndView;
