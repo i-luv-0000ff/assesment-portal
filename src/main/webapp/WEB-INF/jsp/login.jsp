@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<title>HCSC Assessment Portal - Login</title>
+<title>Assessment Portal - Login</title>
 <link rel="stylesheet" type="text/css" href="styles.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
