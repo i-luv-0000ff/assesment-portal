@@ -85,9 +85,7 @@
 </head>
 <body>
 	<%@include file="adminMenu.jsp"%>
-	<div id="questionsListId"></div>
-
-	<div id="optionsListId">
+	<div id="adminCategory">
 		<form:form action="admin/deleteCategory" method="post"
 			modelAttribute="adminForm" name="categoryForm">
 			<input type="hidden" name="categoryId" id="categoryId" />
@@ -122,6 +120,9 @@
 				type="button">Add Category</button>
 		</form:form>
 	</div>
+	<div id="questionsListId"></div>
+
+	<div id="optionsListId"></div>
 
 
 	<div id="categoryDiv" class="modal">
@@ -310,6 +311,7 @@ function onClickViewQuestionDetails(categoryId,categoryName){
 		url : "${home}admin/getQuestionByCategory",
 		data : { "categoryId" : categoryId},
 		success : function(response) {
+			 $("#adminCategory").hide();
 			 $("#questionsListId").html(response);  
 			 $("#categoryName").html(categoryName);
 			 $("#optionsListId").html("");

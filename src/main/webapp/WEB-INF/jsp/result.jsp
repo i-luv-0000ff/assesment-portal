@@ -76,11 +76,11 @@
 						<c:set var="marks" value="${assessementObj.assessementPercentage}" />
 						<c:choose>
 							<c:when test="${marks > assessementObj.categoryCutOff}">
-								<h3 align="center">Congratulation! You have Scored ${marks}%</h3>
+								<h3 align="center">Congratulation! You have scored ${marks}%</h3>
 								<br/>
 							</c:when>
 							<c:otherwise>
-								<h3 align="center">You have Scored ${marks}%. Better luck next time!!</h3>
+								<h3 align="center">You have scored ${marks}%. Better luck next time!!</h3>
 								<br/>			
 							</c:otherwise>
 						</c:choose>
