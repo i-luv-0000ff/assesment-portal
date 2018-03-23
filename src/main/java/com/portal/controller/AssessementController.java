@@ -99,24 +99,22 @@ public class AssessementController
 
 			return new ModelAndView("assessement", "assessementObj", assessementObj);
 		}	
-		else if("Finish".equals(action)) {
-			
-			/*
-			String countdownTime = request.getParameter("countdown");
-			assessementObj.setCourseTime(countdownTime);			
-			System.out.println("countdownTime Parameter ::: "+countdownTime);
-			*/ 
-			
-            int questionNumber = assessementObj.getQuestionNumber();
+		else if ("Finish".equals(action)) {
+
+ 			String countdownTime = request.getParameter("countdown");
+			assessementObj.setCourseTime(countdownTime);
+			System.out.println("countdownTime Parameter ::: " + countdownTime);
+
+			int questionNumber = assessementObj.getQuestionNumber();
 			HashMap<Integer, String[]> userSelectedAnswersMap = assessementObj.getUserSelectedAnswersMap();
 			userSelectedAnswersMap.put(questionNumber, assessementObj.getUserAnswers());
 			assessementObj.setUserAnsMap(userSelectedAnswersMap);
-			return new ModelAndView("confirmation","assessementObj",assessementObj);
-			
+			return new ModelAndView("confirmation", "assessementObj", assessementObj);
+
 		}
 		else {			
 			
-			Integer category_Id,catCutOff;
+			Integer category_Id, catCutOff;
 			Integer userId = (Integer)session.getAttribute("userId");		
 			String categoryId = request.getParameter("categoryId");
 			String categoryCutOff = request.getParameter("categoryCutOff");			
@@ -146,11 +144,10 @@ public class AssessementController
 	}
 	
 	/**
-	 * Load the Question details by question Id.
+	 * Get the total questions.
 	 * 
 	 * @param questionId
-	 *            the question Id.
-	 * @return the question object by using JSON
+	 *            the question Id. 
 	 */
 	@RequestMapping(value = "/getTotalQuestions", method = RequestMethod.POST)
 	public @ResponseBody AssessementBean getTotalQuestions(@ModelAttribute("assessementObj") AssessementBean assessementObj) {		
@@ -176,12 +173,7 @@ public class AssessementController
 	public ModelAndView finishAssessement(@ModelAttribute("assessementObj") AssessementBean assessementObj,@ModelAttribute("action") String action, HttpServletRequest request) {
 		
 		if ("Go Back".equals(action)) {
-
-			/*
-			 * String countdownTime = request.getParameter("countdown");
-			 * assessementObj.setCourseTime(countdownTime);
-			 * System.out.println("countdownTime Parameter1 ::: "+countdownTime);
-			 */
+			
 			int questionNo = assessementObj.getQuestionNumber();
 			HashMap<Integer, String[]> userSelectedAnswersMap = assessementObj.getUserSelectedAnswersMap();
 			userSelectedAnswersMap.put(questionNo, assessementObj.getUserAnswers());
@@ -457,15 +449,6 @@ public class AssessementController
 		  return "redirect:/chooseAssessment";
 	}
 	
-	/*
-	  @ExceptionHandler(Exception.class)
-	  public ModelAndView handleError(HttpServletRequest req, Exception ex) {   
-
-	    ModelAndView mav = new ModelAndView();
-	    mav.addObject("exception", ex);
-	    mav.addObject("url", req.getRequestURL());
-	    mav.setViewName("error");
-	    return mav;
-	  }
-	*/
+	
+	
 }

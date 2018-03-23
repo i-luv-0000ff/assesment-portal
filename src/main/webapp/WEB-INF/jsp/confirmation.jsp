@@ -16,6 +16,10 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<%
+String timer = request.getParameter( "countdown" );
+if( timer == null ) timer = "0";
+%>
 <style>
 #resultPage {
 	position: absolute;
@@ -84,7 +88,9 @@ footer {
 				<div class="panel panel-primary" style="width: 500px;">
 					<div class="panel-heading">Assessment Summary</div>
 					<div class="panel-body">
-						<form:form method="POST" commandName="assessementObj" action="finishAssessement">
+						<form:form method="POST" commandName="assessementObj" action="finishAssessement" name="confirmPage">
+						<input type="hidden" name="timer" id="timer">		
+						<input type="hidden" name="countdown" class="countdown" id="countdown" readonly>
 							<table class="table">
 								<thead>
 									<tr>
@@ -115,5 +121,17 @@ footer {
 				</div>
 			</div>
 		</div>
+<script>
+
+//Time Format : "01:01:08";
+var timer2 = "<%=timer%>"; // write time to javascript
+
+if(timer2 ==0){
+	timer2 = document.getElementById("time").value;
+}
+
+document.confirmPage.countdown.value = timer2; 
+document.getElementById("countdown1").innerText = timer2;
+</script>
 </body>
 </html>
