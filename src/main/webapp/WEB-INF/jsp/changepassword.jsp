@@ -53,7 +53,7 @@ p {
 <body>
 	<div class="container-fluid text-center"
 		style="background-color: rgba(51, 122, 183, 1);">
-		<div class="container text-center">
+		<div class="container" style="margin-left:-28%">
 			<h3 style="color: rgba(245, 245, 245, 1);">Assessment Portal</h3>
 		</div>
 	</div>

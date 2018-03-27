@@ -58,7 +58,7 @@ p {
 </style>
 <body>
 <div class="container-fluid text-center" style="background-color: rgba(51, 122, 183, 1);">
-	<div class="container text-center">
+	<div class="container" style="margin-left:-28%">
 		<h3 style="color: rgba(245, 245, 245, 1);">Assessment Portal</h3>    
 	</div>
 </div>
@@ -71,7 +71,7 @@ p {
 			<form:form class="form-horizontal" method="Post" commandName="userForm" Action="register">
 				<fieldset>
 					<div class="form-group">
-						<label class="control-label col-md-2"  for="name">User Name:</label>
+						<label class="control-label col-md-2"  for="name">User Name</label>
 						<div class="col-md-10" style="padding: 0px 16px 0px 0px;">
 							<form:input path="user_name" id="username" class="form-control" name="name" placeholder="Enter User Name" onchange="javascript:checkAvailability()"></form:input>
 							<input type ="hidden" id="uname"/>
@@ -80,7 +80,7 @@ p {
 					</div>
 
 					<div class="form-group">
-						 <label class="control-label col-md-2" for="pass">Password :</label>	
+						 <label class="control-label col-md-2" for="pass">Password </label>	
 						<div class="col-md-10" style="padding: 0px 16px 0px 0px;">						 
 						 	<form:input path="password" id="pass" type="password" class="form-control" name="pass" placeholder="Enter Password"/>
 							<form:errors path="password" cssClass="error" /> 	
@@ -88,7 +88,7 @@ p {
 					</div>
 
 					<div class="form-group">
-						 <label class="control-label col-md-2" for="re-pass">Confirm Password :</label>	
+						 <label class="control-label col-md-2" for="re-pass">Confirm Password </label>	
 						<div class="col-md-10" style="padding: 0px 16px 0px 0px;">						 
 						 	<form:input path="confirmPassword" id="re-pass" type="password" class="form-control" name="re-pass" placeholder="Re-type Password" onchange="matchPassword()"/>
 						 	<form:errors path="confirmPassword" cssClass="error" />  	
@@ -96,7 +96,7 @@ p {
 					</div>
 							
 					<div class="form-group">
-						 <label class="control-label col-md-2" for="email">E-mail :</label>
+						 <label class="control-label col-md-2" for="email">E-mail </label>
 						<div class="col-md-10" style="padding: 0px 16px 0px 0px;">						  							
 					     	<form:input path="email" id="email" class="form-control" name="email" placeholder="Enter E-mail Id"/>
 					     	<form:errors path="email" cssClass="error" />
@@ -104,7 +104,7 @@ p {
 					</div>			
 					
 					<div class="form-group">
-						<label class="control-label col-md-2" for="securityquestion">Security Question :</label> 
+						<label class="control-label col-md-2" for="securityquestion">Security Question </label> 
 						<div class="col-md-10" style="padding: 0px 16px 0px 0px;">						
 							<form:select path="userSecurtiyQuest" class="form-control" name="securityquestion" >
 								<form:option value="" label="Choose your security question"></form:option>
@@ -117,7 +117,7 @@ p {
 					</div>
 
 					<div class="form-group">
-						<label class="control-label col-md-2" for="securityAns">Security Answer :</label>
+						<label class="control-label col-md-2" for="securityAns">Security Answer </label>
 						<div class="col-md-10" style="padding: 0px 16px 0px 0px;">						  
 				  			<form:input type="text" id="securityAns" path="securityAns" class="form-control" name="securityAns" placeholder="Your Security Answer" />
 				  			<form:errors path="securityAns" cssClass="error" />
@@ -126,7 +126,7 @@ p {
  	 	
 					<div class="row" style="padding: 0px 0px 18px 0px;">
 						<div class="col-xs-12 col-sm-12 col-md-12">
-							<div class="col-sm-offset-7 col-xs-6 col-sm-6 col-md-6" style="align:right;">
+							<div class="col-sm-offset-6 col-xs-6 col-sm-6 col-md-6" style="align:right;">
 	    	    				<button id="resetvalue" type="reset" class="btn btn-primary btn-md" onclick="myReset()">Reset-Fields</button>
     	    					<button id="register" type="submit" class="btn btn-primary" onclick="javascript:checkAvailability()">Register Me</button>
       						</div>		

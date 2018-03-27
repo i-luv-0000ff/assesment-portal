@@ -53,7 +53,7 @@ p {
 <body>
 	<div class="container-fluid text-center"
 		style="background-color: rgba(51, 122, 183, 1);">
-		<div class="container text-center">
+		<div class="container" style="margin-left:-28%">
 			<h3 style="color: rgba(245, 245, 245, 1);">Assessment Portal</h3>
 		</div>
 	</div>
@@ -69,7 +69,7 @@ p {
 					commandName="userForm" class="form-horizontal">
 					<fieldset>
 						<div class="form-group">
-							<label class="control-label col-md-2" for="user_name">Username
+							<label class="control-label col-md-2" for="user_name">User Name
 							</label>
 							<div class="col-md-10" style="padding: 0px 16px 0px 0px;">
 								<form:input path="user_name" type="text" class="form-control"

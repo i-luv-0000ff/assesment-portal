@@ -55,7 +55,7 @@ div.a {
 			<div>
 			<table>
 				<tr>
-					<td><h3 style="margin: 0px;">Select your Assessment:</h3></td>						
+					<td><h4 style="margin: 0px;">Select your Assessment &nbsp;</h4></td>						
 					<td><form:select id="mySelect" path="category" class="form-control" onchange="javascript:displayDecsription(this,${inValidCategoryIds},${emptyQuestCategories} )">
 							 <form:option value="0">Select Assessment</form:option> 
 							 <c:forEach items="${categoryObjs}" var="lstCategories">
@@ -105,7 +105,7 @@ function displayDecsription(elem,inValidCategories, emptyQuestCategories)
 			document.getElementById("submit_id").disabled = true;
 			document.getElementById("hidden_div").style.display = "none";
 			document.getElementById("checkValidAssessmentId").style.display = "block";
-			document.getElementById("invalidAssessment").innerHTML = "<span style=\"color:red;font-size:18px\">Sorry!!! You Cannot Launch This Assessment As You Have Reached Maximum Number Of Attempts.</br> Please Contact Admin For Further Updates.</span>"
+			document.getElementById("invalidAssessment").innerHTML = "<span style=\"color:red;font-size:15px\">Sorry!!! You cannot launch this assessment, As you have reached maximum number of attempts.</br> Please contact Admin for further updates.</span>"
 			checkValidCategory = false;
 		}
 	}
@@ -113,8 +113,8 @@ function displayDecsription(elem,inValidCategories, emptyQuestCategories)
 	{	document.getElementById("submit_id").disabled = false;
 		document.getElementById("checkValidAssessmentId").style.display = "none";
 		document.getElementById("hidden_div").style.display = "block";
-		document.getElementById("desc").innerHTML = "<span style=\"font-size:18px\">"+selectedValue.split(',')[1]+"</span>";
-		document.getElementById("cutoff").innerHTML = "<span style=\"font-size:18px\">You Should score minimum " + selectedValue.split(',')[2] +" percentage to pass in this Exam.</span>";
+		document.getElementById("desc").innerHTML = "<span style=\"font-size:17px\">"+selectedValue.split(',')[1]+"</span>";
+		document.getElementById("cutoff").innerHTML = "<span style=\"font-size:17px\">You should score minimum " + selectedValue.split(',')[2] +" percentage to pass in this assessment.</span>";
 	} 
 	else if(checkValidCategory) {
 		document.getElementById("submit_id").disabled = true;

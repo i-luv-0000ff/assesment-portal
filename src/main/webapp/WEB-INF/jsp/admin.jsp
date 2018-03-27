@@ -108,8 +108,8 @@
 						<td>${category.maximumAttempts}</td>
 						<td><a href="#"
 							onclick="javascript:onClickViewQuestionDetails(${category.categoryId},'${category.categoryName}')">View
-								Questions</a> <a href="#"
-							onclick="javascript:loadCategoryDetails(${category.categoryId},'${category.categoryName}')">Edit</a>
+								Questions</a> | <a href="#"
+							onclick="javascript:loadCategoryDetails(${category.categoryId},'${category.categoryName}')">Edit</a> | 
 							<a href="#"
 							onclick="javascript:onClickDeleteCategory(${category.categoryId},'${category.categoryName}')">Delete</a></td>
 					</tr>
@@ -159,7 +159,7 @@
 							style="color: red;"></span></td>
 					</tr> -->
 					<tr>
-						<td><form:label path="category.categoryName">Category Name :</form:label></td>
+						<td align="right" style="padding-right: 10px;"><form:label path="category.categoryName">Category Name   </form:label></td>
 						<td><form:input path="category.categoryName"
 								id="categoryFormCategoryName" class="form-control"
 								placeholder="Enter Category Name" maxlength="45"
@@ -167,7 +167,7 @@
 								style="margin-bottom: 5px;margin-top: 5px;" /></td>
 					</tr>
 					<tr>
-						<td><form:label path="category.categoryDesc">Category Description :</form:label></td>
+						<td align="right" style="padding-right: 10px;"><form:label path="category.categoryDesc">Category Description </form:label></td>
 						<td><form:textarea path="category.categoryDesc"
 								id="categoryFormCategoryDesc" class="form-control"
 								placeholder="Enter Category Description" maxlength="500"
@@ -176,7 +176,7 @@
 								style="margin-bottom: 5px;margin-top: 5px;" /></td>
 					</tr>
 					<tr>
-						<td><form:label path="category.cutOff">Pass Mark :</form:label></td>
+						<td align="right" style="padding-right: 10px;"><form:label path="category.cutOff">Pass Mark </form:label></td>
 						<td><form:input path="category.cutOff"
 								id="categoryFormCategoryCutOff" class="form-control"
 								placeholder="Enter Category CutOff"
@@ -185,7 +185,7 @@
 								style="margin-bottom: 5px;margin-top: 5px;" /></td>
 					</tr>
 					<tr>
-						<td><form:label path="category.maximumAttempts">Maximum Number Of Attempt :</form:label></td>
+						<td align="right" style="padding-right: 10px;"><form:label path="category.maximumAttempts">Maximum Number Of Attempt </form:label></td>
 						<td><form:input path="category.maximumAttempts"
 								id="categoryFormMaxNoOfAttempt" class="form-control"
 								placeholder="Enter Maximum Number Of Attempt"
@@ -197,8 +197,8 @@
 				</table>
 			</div>
 
-			<div class="modalContainer" style="background-color: #f1f1f1;"
-				align="center">
+			<div class="modalContainer" style="background-color: #f1f1f1; padding-right: 10px;"
+				align="right">
 				<button class="btn btn-primary" type="button"
 					onclick="document.getElementById('categoryDiv').style.display='none'"
 					style="margin-bottom: 5px; margin-top: 5px;">Cancel</button>

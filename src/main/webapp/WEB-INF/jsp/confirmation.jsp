@@ -107,7 +107,7 @@ footer {
 									   				<span  style ='font-size:15px;color: red;'>Not Answered</span>
 										        </c:if> 
 										        <c:if test="${not empty obj.value}">
-									   			 Answered
+									   			 <span  style ='font-size:15px;'>Answered</span>
 										        </c:if>
 										    </td>
 										</tr>

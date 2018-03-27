@@ -91,12 +91,15 @@ form {
 	text-align: center;
 	margin-left: 100px;
 }
+input::placeholder{
+	color:#999;
+}
 </style>
 <body>
 	<div style="height: 100%; background-color: rgba(245, 245, 245, 1);">
 		<div class="container-fluid text-center"
 			style="background-color: rgba(51, 122, 183, 1);">
-			<div class="container text-center">
+			<div class="container" style="margin-left:-28%">
 				<h3 style="color: rgba(245, 245, 245, 1);">Assessment Portal</h3>
 			</div>
 		</div>
@@ -108,14 +111,14 @@ form {
 				<br>
 				<br>
 				<br>
-				<label class="control-label" for="name">Username :</label>
+				<label class="control-label" for="name" align="right" >User Name&nbsp;&nbsp;</label>
 				<input id="name" type="text" name="name" required
-					data-toggle="popover" data-content="Category Name required" />
+					data-toggle="popover" data-content="Category Name required" placeholder="Enter User Name" />
 				<br>
 				<br>
-				<label class="control-label" for="password">Password :</label>
+				<label class="control-label" for="password" align="right">Password&nbsp;&nbsp;&nbsp;</label>
 				<input id="password" type="password" name="password" required
-					data-toggle="popover" data-content="Category Name required" />
+					data-toggle="popover" data-content="Category Name required" placeholder="Enter Password" />
 				<br>
 				<br>
 				<input type="submit" value="Login" class="btn btn-primary" />
@@ -130,7 +133,7 @@ form {
 					</ul>
 				</div>
 
-				<div align="right">
+				<div align="center">
 					<font color="red">${errorMessage}</font>
 					<c:if test="${not empty successMsg}">
 						<p style="color: green; font-style: italic; font-weight: bold;">${successMsg}

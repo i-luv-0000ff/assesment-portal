@@ -68,7 +68,7 @@ if( timer == null ) timer = "0";
   <div >
     <div class="row">
       <div class="col-sm-2" style="background-color:lavender;">
-      	<p class="question-num">Question : ${assessementObj.questionNumber}</p>		
+      	<p class="question-num">Question ${assessementObj.questionNumber}</p>		
       </div>
         <div class="col-sm-8">
         

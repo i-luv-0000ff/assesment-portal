@@ -14,14 +14,16 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <c:url var="home" value="/" scope="request" />
 
+<link rel="stylesheet" href="../css/jquery-ui.css">
+<script src="../js/applicationScripts.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 </head>
 <body>
 	<div align="left">
 		<table>
 			<tr>
-				<td><h4>
-						<small>Selected Question:</small>
-					</h4></td>
+				<td><h5>Selected Question &nbsp;</h5> </td>
 				<td><h4 id="questionDesc"></h4></td>
 			</tr>
 		</table>
@@ -41,7 +43,7 @@
 					<td>${options.optionsDesc}</td>
 					<td>${options.correctAnswer}</td>
 					<td><a href="#"
-						onclick="javascript:loadOptionDetails(${options.optionsId},'${options.optionsDesc}')">Edit</a>
+						onclick="javascript:loadOptionDetails(${options.optionsId},'${options.optionsDesc}')">Edit</a> | 
 						<a href="#"
 						onclick="javascript:onClickDeleteOption(${options.optionsId},'${options.optionsDesc}')">Delete</a></td>
 				</tr>
@@ -74,20 +76,20 @@
 					</tr> -->
 
 					<tr>
-						<td><form:label path="option.optionsDesc">Options Description</form:label></td>
+						<td align="right" style="padding-right: 10px;"><form:label path="option.optionsDesc">Options Description </form:label></td>
 						<td><form:textarea path="option.optionsDesc" name="optionsDesc" class="form-control"
 								id="optionFormOptionsDesc" style="margin-bottom: 5px;margin-top: 5px;"
 								data-toggle="popover" data-content="Option Description required" maxlength="500"/></td>
 					</tr>
 					<tr>
-						<td><form:label path="option.correctAnswer">Is Correct Answer</form:label></td>
+						<td align="right" style="padding-right: 10px;"><form:label path="option.correctAnswer">Is Correct Answer </form:label></td>
 						<td><form:checkbox path="option.correctAnswer" value="Yes"
 								id="optionFormCorrectAnswer" /></td>
 					</tr>
 				</table>
 			</div>
 
-			<div style="background-color: #f1f1f1" align="center">
+			<div style="background-color: #f1f1f1; padding-right: 10px;" align="right">
 				<button class="btn btn-primary" type="button"
 					onclick="document.getElementById('optionDiv').style.display='none'" style="margin-bottom: 5px; margin-top: 5px;">Cancel</button>
 				<button class="btn btn-primary" style="margin-bottom: 5px; margin-top: 5px;">Submit</button>

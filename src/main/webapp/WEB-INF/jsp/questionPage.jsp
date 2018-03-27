@@ -16,6 +16,11 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <c:url var="home" value="/" scope="request" />
+
+<link rel="stylesheet" href="../css/jquery-ui.css">
+<script src="../js/applicationScripts.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <style type="text/css">
 
 /* Modal Content/Box */
@@ -43,9 +48,7 @@
 	<div align="left">
 		<table>
 			<tr>
-				<td><h4>
-						<small>List of Questions for the selected Category: </small>
-					</h4></td>
+				<td><h5>List of Questions for the selected Category &nbsp;</h5> </td>
 				<td><h4 id="categoryName"></h4></td>
 			</tr>
 		</table>
@@ -81,8 +84,8 @@
 					</td>
 					<td><a href="#"
 						onclick="javascript:onClickViewOptionDetails(${question.questionId},'${question.questionDesc}')">View
-							Options</a> <a href="#"
-						onclick="javascript:loadQuestionDetails(${question.questionId},'${question.questionDesc}')">Edit</a>
+							Options</a> | <a href="#"
+						onclick="javascript:loadQuestionDetails(${question.questionId},'${question.questionDesc}')">Edit</a> | 
 						<a href="#"
 						onclick="javascript:onClickDeleteQuestion(${question.questionId},'${question.questionDesc}')">Delete</a></td>
 				</tr>
@@ -123,7 +126,7 @@
 					</tr> -->
 
 					<tr>
-						<td><form:label path="question.questionDesc">Question Description: </form:label></td>
+						<td align="right" style="padding-right: 10px;"><form:label path="question.questionDesc">Question Description </form:label></td>
 						<td><form:textarea path="question.questionDesc"
 								class="form-control" id="questionFormQuestionDesc"
 								data-toggle="popover"
@@ -131,7 +134,7 @@
 								style="margin-bottom: 5px;margin-top: 5px;" /></td>
 					</tr>
 					<tr>
-						<td><form:label path="question.answerType">Answer Type: </form:label></td>
+						<td align="right" style="padding-right: 10px;"><form:label path="question.answerType">Answer Type </form:label></td>
 						<td><form:select path="question.answerType"
 								class="form-control" style="margin-bottom: 5px;margin-top: 5px;"
 								id="questionFormAnswerType" data-toggle="popover"
@@ -142,7 +145,7 @@
 							</form:select></td>
 					</tr>
 					<tr>
-						<td><form:label path="question.complexity">Complexity Type: </form:label></td>
+						<td align="right" style="padding-right: 10px;"><form:label path="question.complexity">Complexity Type </form:label></td>
 						<td><form:select path="question.complexity"
 								class="form-control" style="margin-bottom: 5px;margin-top: 5px;"
 								id="questionFormComplexityType" data-toggle="popover"
@@ -155,7 +158,7 @@
 				</table>
 			</div>
 
-			<div style="background-color: #f1f1f1" align="center">
+			<div style="background-color: #f1f1f1; padding-right: 10px;" align="right">
 				<button class="btn btn-primary" type="button"
 					onclick="document.getElementById('questionDiv').style.display='none'"
 					style="margin-bottom: 5px; margin-top: 5px;">Cancel</button>

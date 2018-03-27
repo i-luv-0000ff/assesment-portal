@@ -101,19 +101,19 @@
 								<c:if test="${obj.value eq 'Correct'}">
 									<tr>
 										<td>${obj.key}</td>
-										<td style ='color: green; font-size: 20px;'>${obj.value}</td>						
+										<td style ='color: green; font-size: 15px;'>${obj.value}</td>						
 									</tr>
 								</c:if>
 								<c:if test="${obj.value eq 'Wrong'}">
 									<tr>
 										<td>${obj.key}</td>
-										<td style ='font-size:20px;color: red;'>${obj.value}</td>
+										<td style ='font-size:15px;color: red;'>${obj.value}</td>
 									</tr>
 								</c:if>
 								<c:if test="${obj.value eq 'Unanswered'}">
 									<tr>
 										<td>${obj.key}</td>
-										<td style ='font-size:20px; color: DarkTurquoise;	'>${obj.value}</td>
+										<td style ='font-size:15px; color: DarkTurquoise;	'>${obj.value}</td>
 									</tr>
 								</c:if>
 							</c:forEach>								
