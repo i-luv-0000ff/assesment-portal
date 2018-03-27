@@ -17,6 +17,10 @@
 <link rel="stylesheet" href="css/questions.css">
 <link rel="stylesheet" href="css/bootstrap-directional-buttons.css">
 <c:url var="home" value="/" scope="request" />
+
+<link rel="stylesheet" href="../css/jquery-ui.css">
+<script src="../js/applicationScripts.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   
 <style type="text/css">
   /* Remove the navbar's default rounded borders and increase the bottom margin  
@@ -166,15 +170,22 @@ var interval = setInterval(function() {
 	}, 1000);
 
 function clearInterval(){
-	alert("Assessment timed out, Click ok to submit ");
-	document.assessementForm.action ="finishAssessement";
-	document.assessementForm.submit();
+	var content = "Assessment timed out, Click ok to submit";
+	 popDialog({
+			title: 'Alert',
+	        message: content,
+	        buttons: {
+	        	"Ok": function(){ 
+	        		$(this).dialog('close');
+		        	document.assessementForm.action ="finishAssessement";
+		        	document.assessementForm.submit(); },
+	        }
+	    });
 }
 
 //Below method for question is answered or not
 function getTotalQuestions(assessementObj){
 		
-	var flag =  true;
 	jQuery.ajax({
 		type : "POST",
 		url : "${home}getTotalQuestions",		
@@ -184,11 +195,22 @@ function getTotalQuestions(assessementObj){
 			var totalQs = obj.unselectedQuestions;
 	
 			if(totalQs!=0){
-				flag = confirm("You are not answered for "+totalQs+" questions, Do you want to submit?");	
-				if(flag){				
-					document.assessementForm.action ="finishAssessement";
-					document.assessementForm.submit();
-				}
+				var content = "You are not answered for " + totalQs + " questions, Do you want to submit?";
+				popDialog({
+					title: 'Alert',
+					message : content,
+					buttons : {
+						"Continue" : function() {
+							$(this).dialog('close');
+							document.assessementForm.action = "finishAssessement";
+							document.assessementForm.submit();
+						},
+						"Cancel" : function() {
+							$(this).dialog('close'); 
+						}
+					}
+				});
+				
 			}else{
 					document.assessementForm.action ="finishAssessement";
 					document.assessementForm.submit();

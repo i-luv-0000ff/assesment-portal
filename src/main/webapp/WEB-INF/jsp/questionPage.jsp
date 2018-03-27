@@ -169,29 +169,40 @@
 <script type="text/javascript">
 
 	function onClickDeleteQuestion(questionId,questionDesc) {
-		var flag = confirm("Do you want to delete Question: " + questionDesc);
 		var categoryName = $("#categoryNameId").val();
 		var categoryId = $('#categoryId').val();
-		if(flag){
-			jQuery.ajax({
-				type : "POST",
-				url : "${home}admin/deleteQuestion",
-				data: {
-					questionId: questionId,
-					categoryId:categoryId
-			    },
-				success : function(response) {
-					 $("#optionsListId").html("");
-					 $("#questionDesc").html("");
-					 $("#questionsListId").html(response);  
-					 $("#categoryName").html(categoryName);
+		var content = "Do you want to delete Question: " + questionDesc;
+		popDialog({
+			title: 'Confirmation',
+			message : content,
+			buttons : {
+				"Continue" : function() {
+					$(this).dialog('close');
+					jQuery.ajax({
+						type : "POST",
+						url : "${home}admin/deleteQuestion",
+						data: {
+							questionId: questionId,
+							categoryId:categoryId
+					    },
+						success : function(response) {
+							 $("#optionsListId").html("");
+							 $("#questionDesc").html("");
+							 $("#questionsListId").html(response);  
+							 $("#categoryName").html(categoryName);
+						},
+						error : function(e) {
+							console.log("ERROR: ", e);
+						}
+					});
 				},
-				error : function(e) {
-					console.log("ERROR: ", e);
+				"Cancel" : function() {
+					$(this).dialog('close');
+					document.assessementForm.action = "finishAssessement";
+					document.assessementForm.submit();
 				}
-			});
-			
-		}
+			}
+		});
 	}
 	
 	//Get the modal
@@ -311,11 +322,6 @@
 	}*/
  
 function loadQuestionDetails(questionId,questionDesc) {
-		var flag =  true;
-		if(questionId != ""){
-			flag = confirm("do u want to Edit question: " + questionDesc);				
-		}
-		if(flag){
 			//clearQuestionForm();
 			jQuery.ajax({
 				type : "POST",
@@ -338,7 +344,6 @@ function loadQuestionDetails(questionId,questionDesc) {
 				}
 			});
 			
-		}
 }
 </script>
 

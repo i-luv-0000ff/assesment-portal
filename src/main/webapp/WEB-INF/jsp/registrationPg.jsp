@@ -13,6 +13,11 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <c:url var="home" value="/" scope="request" />
+  
+  <link rel="stylesheet" href="../css/jquery-ui.css">
+<script src="../js/applicationScripts.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
 </head>
 <style>
 #box {
@@ -144,10 +149,18 @@ p {
  function matchPassword(){
 	if (document.getElementById("pass").value.trim() != document.getElementById("re-pass").value.trim())
 	 {
-		alert("Passwords doesn't match.");
-		document.getElementById("pass").value = "";
-		document.getElementById("re-pass").value = "";
-		document.getElementById("pass").focus();
+		var content = "Passwords doesn't match.";
+		 popDialog({
+			 	title: 'Alert',
+		        message: content,
+		        buttons: {
+		        	"Ok": function(){ $(this).dialog('close');
+		        	document.getElementById("pass").value = "";
+		    		document.getElementById("re-pass").value = "";
+		    		document.getElementById("pass").focus();
+		    		},
+		        }
+		    });
 		return false;
 	 }
 	else
@@ -166,8 +179,16 @@ p {
 	 		success: function(response) {
 	 			if (response != "")
 	 			{	
-	 				alert(response);
-	 				document.getElementById("username").value = "";
+	 				var content = response;
+	 				 popDialog({
+	 						title: 'Alert',
+	 				        message: content,
+	 				        buttons: {
+	 				        	"Ok": function(){ $(this).dialog('close');
+	 				        	document.getElementById("username").value = "";
+	 				        	},
+	 				        }
+	 				    });
 		 		}	 			
 	 		}
 	 	});

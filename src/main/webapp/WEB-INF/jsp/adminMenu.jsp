@@ -12,6 +12,12 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <c:url var="home" value="/" scope="request" />
+  
+<link rel="stylesheet" href="../css/jquery-ui.css">
+<script src="../js/applicationScripts.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+  
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
 	<style type="text/css">
@@ -53,6 +59,10 @@
 .dropdown:hover .dropbtn {
     background-color: rgba(51, 122, 183, 1);
 }
+
+#dialog-confirm {
+	height: auto !important;
+
 	</style>
 </head>
 <body>

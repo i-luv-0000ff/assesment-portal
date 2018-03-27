@@ -284,12 +284,22 @@ function submitAllCategoryValues() {
 }*/
 
 function onClickDeleteCategory(categoryId,categoryName){
-		var flag = confirm("Do you want to delete category: " + categoryName);
-		if(flag){
-			$('#categoryId').val(categoryId);
-			document.categoryForm.action ="admin/deleteCategory";
-			document.categoryForm.submit();
-		}
+		var content = "Do you want to delete category: " + categoryName +" ? ";
+		 popDialog({
+		        title: 'Confirmation',
+		        message: content,
+		        buttons: {
+		        	"Continue": function(){ $(this).dialog('close');
+		        	deleteCategory(categoryId)},
+		            "Cancel": function(){ $(this).dialog('close') }
+		        }
+		    });
+}
+
+function deleteCategory(categoryId){
+	$('#categoryId').val(categoryId);
+	document.categoryForm.action ="admin/deleteCategory";
+	document.categoryForm.submit();
 }
 
 //Get the modal
@@ -323,12 +333,7 @@ function onClickViewQuestionDetails(categoryId,categoryName){
 }
 
 function loadCategoryDetails(categoryId,categoryName){
-	var flag =  true;
-	if(categoryId != ""){
-		flag = confirm("do u want to Edit category: " + categoryName);				
-	}
-	//clearCategoryForm();
-	if(flag){
+	 
 		jQuery.ajax({
 			type : "POST",
 			url : "${home}admin/loadCategoryDetails",
@@ -350,7 +355,6 @@ function loadCategoryDetails(categoryId,categoryName){
 			}
 		});
 		
-	}
 }
 
 $(document).ready(function(){

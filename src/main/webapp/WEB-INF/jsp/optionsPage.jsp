@@ -177,37 +177,41 @@ $(document).ready(function(){
 }*/
 
 function onClickDeleteOption(optionsId,optionsDesc){
-		var flag = confirm("Do you want to delete category: " + optionsDesc);
 		var questionId = $("#questionId").val();
-		if(flag){
-			jQuery.ajax({
-				type : "POST",
-				url : "${home}admin/deleteOption",
-				data: {
-					optionId: optionsId,
-					questionId: questionId
-			    },
-				success : function(response) {
-					var questionDesc = $("#questionDesc").html();
-					$("#optionsListId").html(response);  
-					$("#questionDesc").html(questionDesc);
+		var content = "Do you want to delete category: " + optionsDesc;
+		popDialog({
+			title: 'Confirmation',
+			message : content,
+			buttons : {
+				"Continue" : function() {
+					$(this).dialog('close');
+					jQuery.ajax({
+						type : "POST",
+						url : "${home}admin/deleteOption",
+						data: {
+							optionId: optionsId,
+							questionId: questionId
+					    },
+						success : function(response) {
+							var questionDesc = $("#questionDesc").html();
+							$("#optionsListId").html(response);  
+							$("#questionDesc").html(questionDesc);
+						},
+						error : function(e) {
+							console.log("ERROR: ", e);
+						}
+					});
 				},
-				error : function(e) {
-					console.log("ERROR: ", e);
+				"Cancel" : function() {
+					$(this).dialog('close');
+					document.assessementForm.action = "finishAssessement";
+					document.assessementForm.submit();
 				}
-			});
-			
-		}
+			}
+		});
 }
 
 function loadOptionDetails(optionsId,optionsDesc){
-		var flag = true;
-		if(optionsId != ""){
-			flag = confirm("do u want to Edit Option: " + optionsDesc);	
-		}
-		
-		if(flag){
-			
 			//clearOptionsForm();
 			
 			jQuery.ajax({
@@ -235,7 +239,6 @@ function loadOptionDetails(optionsId,optionsDesc){
 				}
 			});
 			
-		}
 }
 
 </script>
