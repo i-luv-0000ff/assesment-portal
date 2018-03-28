@@ -48,7 +48,7 @@
 					<form:hidden path = "totalAttempts" value = "${attempts.attemptsId}" />
 				<tr>
 					<td>${attempts.attemptsDesc}</td>
-					<td>${attempts.questionDesc}:<form:input
+					<td>${attempts.questionDesc} <form:input
 							path="maxAttemptsList[${attemptStatus.index}].questionsId" id="questionsPerAttemptsID${attemptStatus.index}"/>
 					</td>
 					<c:forEach items="${adminForm.complexityHeaderLst}"
@@ -71,7 +71,7 @@
 		</div>
 	</form:form>
 
-	<div class="modalContainer" id="responseDesc"></div>
+	<div class="modalContainer" id="responseDesc" align="center"></div>
 
 </body>
 

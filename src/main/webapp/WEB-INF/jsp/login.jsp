@@ -47,6 +47,7 @@ a {
     color: #337ab7;
     text-decoration: none;
     font-size: medium;
+    font-family: "Book Antiqua", Times, Serif;
     }
 .btn {
 	padding: 8px 16px;
@@ -78,7 +79,7 @@ h2 {
 #box {
 	margin: 0px auto;
 	width: 500px;
-	height: 350px;
+	height: 300px;
 	border: 1px solid rgb(23, 53, 97);
 	box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.5);
 	background: rgba(200, 200, 200, 0.1);
@@ -106,25 +107,28 @@ input::placeholder{
 
 		<div style="margin: 150px;">
 			<h2>Login</h2>
-			<form:form action="assessment" method="post" id="box"
+			<form:form class="form-horizontal" action="assessment" method="post" id="box"
 				commandName="userForm">
 				<br>
 				<br>
+				<div class="form-group">
+					<label class="control-label col-md-4" for="name" align="right" >User Name </label>
+					<div class="col-md-6">
+					<input id="name" type="text" name="name" required
+						data-toggle="popover" data-content="Category Name required" placeholder="Enter User Name" class="form-control" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-4" for="password" align="right">Password </label>
+					<div class="col-md-6">
+					<input id="password" type="password" name="password" required
+						data-toggle="popover" data-content="Category Name required" placeholder="Enter Password" class="form-control" />
+					</div>
+				</div>
 				<br>
-				<label class="control-label" for="name" align="right" >User Name&nbsp;&nbsp;</label>
-				<input id="name" type="text" name="name" required
-					data-toggle="popover" data-content="Category Name required" placeholder="Enter User Name" />
-				<br>
-				<br>
-				<label class="control-label" for="password" align="right">Password&nbsp;&nbsp;&nbsp;</label>
-				<input id="password" type="password" name="password" required
-					data-toggle="popover" data-content="Category Name required" placeholder="Enter Password" />
-				<br>
-				<br>
-				<input type="submit" value="Login" class="btn btn-primary" />
-				<br>
-
-
+				<div class="form-group">
+				<input type="submit" value="Login" class="btn btn-primary"/>
+				</div>
 				<div class="panel-header">
 					<br>
 					<ul class="list-inline" align="right">
