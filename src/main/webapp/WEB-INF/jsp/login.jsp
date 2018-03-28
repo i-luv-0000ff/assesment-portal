@@ -34,6 +34,7 @@ label {
 	display: inline-block;
 	max-width: 100%;
 	margin-bottom: 5px;
+	font-family: "Book Antiqua", Times, Serif;
 	font-weight: 700;
 	font-size: larger;
 }
@@ -111,16 +112,17 @@ input::placeholder{
 				commandName="userForm">
 				<br>
 				<br>
+				<fieldset>
 				<div class="form-group">
-					<label class="control-label col-md-4" for="name" align="right" >User Name </label>
-					<div class="col-md-6">
+					<label class="control-label col-md-5" for="name" align="right" >User Name </label>
+					<div class="col-md-5">
 					<input id="name" type="text" name="name" required
 						data-toggle="popover" data-content="Category Name required" placeholder="Enter User Name" class="form-control" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-md-4" for="password" align="right">Password </label>
-					<div class="col-md-6">
+					<label class="control-label col-md-5" for="password" align="right">Password </label>
+					<div class="col-md-5">
 					<input id="password" type="password" name="password" required
 						data-toggle="popover" data-content="Category Name required" placeholder="Enter Password" class="form-control" />
 					</div>
@@ -148,6 +150,7 @@ input::placeholder{
 							Please login.</p>
 					</c:if>
 				</div>
+				</fieldset>
 			</form:form>
 
 		</div>
